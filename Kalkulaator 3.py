@@ -1,3 +1,9 @@
+"""
+
+To implement GUI
+
+"""
+
 import math
 
 
@@ -16,27 +22,28 @@ n1, n2 = new_numbers()
 
 while True:
     try:
-        action = int(input(f'(1) +\n(2) -\n(3) *\n(4)\
- /\n(5)sin(number1/number2)\n(6)cos(number1/number2)\n\
-(7)Change numbers\n(8)Quit\nCurrent numbers: {n1}\
-  {n2}\nPlease select something (1-6): '))
+        action = int(input(f'\n(1) +\n(2) -\n(3) *\n(4) /\n'
+                           f'(5) sin\n(6) cos\n'
+                           f'(7) Change numbers\n(8) Quit\n'
+                           f'Current numbers: {n1} {n2}\n'
+                           f'Please select something (1-6): '))
 
     except ValueError:
         print("That was not a number!")
         action = 0
 
     if action == 1:
-        print(f'The result is {n1 + n2}')
+        print(f'Result: {n1 + n2}')
     elif action == 2:
-        print(f'The result is {n1 - n2}')
+        print(f'Result: {n1 - n2}')
     elif action == 3:
-        print(f'The result is {n1 * n2}')
+        print(f'Result: {n1 * n2}')
     elif action == 4:
-        print(f'The result is {n1 / n2}')
+        print(f'Result: {n1 / n2}')
     elif action == 5:
-        print(f'The result is {math.sin(n1 / n2)}')
+        print(f'Result: {math.sin(n1 / n2)}')
     elif action == 6:
-        print(f'The result is {math.cos(n1 / n2)}')
+        print(f'Result: {math.cos(n1 / n2)}')
     elif action == 7:
         n1, n2 = new_numbers()
     elif action == 8:
