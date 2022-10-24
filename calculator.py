@@ -4,15 +4,18 @@ operations = ['+', '-', '*', '/', '^2', 'sqrt']
 
 
 def get_num_check_type(operation=0):
-    # only float numbers
+    # only float numbers, no 0 division
+    # pre-check
     if operation > 4:
         # to stop second number after exponent or sqrt operation
         return None
+
     while True:
         try:
             number = float(input('\nNumber:\t'))
             return number
-        except TypeError:
+
+        except (TypeError, ValueError,):
             print('Only float numbers')
             continue
 
@@ -35,26 +38,25 @@ def get_operations():
 
 def get_result(f_number, sec_number, operation):
     if operation == 1:
-        result = f_number + sec_number
-        return result
+        addition = round(f_number + sec_number, 2)
+        return addition
     if operation == 2:
-        result = f_number - sec_number
-        return result
+        subtraction = round(f_number - sec_number, 2)
+        return subtraction
     if operation == 3:
-        result = f_number * sec_number
-        return result
+        multiplication = round(f_number * sec_number, 2)
+        return multiplication
     if operation == 4:
         if sec_number == 0.0:
-            print("Cannot divide by zero!")
             return None
-        result = f_number / sec_number
-        return result
+        division = round(f_number / sec_number, 2)
+        return division
     if operation == 5:
-        result = f_number**2
-        return result
+        exponentiation = round(f_number**2, 2)
+        return exponentiation
     if operation == 6:
-        result = round(math.sqrt(f_number))
-        return result
+        square_root = round(math.sqrt(f_number), 2)
+        return square_root
 
 
 def main():
@@ -63,7 +65,7 @@ def main():
         operation = get_operations()
         sec_number = get_num_check_type(operation)
         result = get_result(f_number, sec_number, operation)
-        print(round(result, 2))
+        print(round(result, 3))
 
 
 if __name__ == "__main__":
