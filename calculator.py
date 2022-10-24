@@ -4,15 +4,18 @@ operations = ['+', '-', '*', '/', '^2', 'sqrt']
 
 
 def get_num_check_type(operation=0):
-    # only float numbers
+    # only float numbers, no 0 division
+    # pre check
     if operation > 4:
         # to stop second number after exponent or sqrt operation
         return None
+
     while True:
         try:
             number = float(input('\nNumber:\t'))
             return number
-        except TypeError:
+
+        except (TypeError, ValueError,):
             print('Only float numbers')
             continue
 
@@ -45,7 +48,6 @@ def get_result(f_number, sec_number, operation):
         return result
     if operation == 4:
         if sec_number == 0.0:
-            print("Cannot divide by zero!")
             return None
         result = f_number / sec_number
         return result
