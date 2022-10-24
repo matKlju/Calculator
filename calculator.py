@@ -35,26 +35,26 @@ def get_operations():
 
 def get_result(f_number, sec_number, operation):
     if operation == 1:
-        result = round(f_number + sec_number, 2)
-        return result
+        addition = round(f_number + sec_number, 2)
+        return addition
     if operation == 2:
-        result = round(f_number - sec_number, 2)
-        return result
+        subtraction = round(f_number - sec_number, 2)
+        return subtraction
     if operation == 3:
-        result = round(f_number * sec_number, 2)
-        return result
+        multiplication = round(f_number * sec_number, 2)
+        return multiplication
     if operation == 4:
         if sec_number == 0.0:
-            print("Cannot divide by zero!")
+            # print("Cannot divide by zero!")
             return None
-        result = round(f_number / sec_number, 2)
-        return result
+        division = round(f_number / sec_number, 2)
+        return division
     if operation == 5:
-        result = round(f_number**2, 2)
-        return result
+        exponentiation = round(f_number**2, 2)
+        return exponentiation
     if operation == 6:
-        result = round(math.sqrt(f_number), 2)
-        return result
+        square_root = round(math.sqrt(f_number), 2)
+        return square_root
 
 
 def main():
