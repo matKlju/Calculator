@@ -45,9 +45,6 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(get_result(10, 0.0, 4), None)
         self.assertEqual(get_result(-2, 0.0, 4), None)
 
-    def test_get_operation(self):
-        self.assertEqual(isinstance(get_operations(), int), True)
-
 
 if __name__ == "__main__":
     unittest.main()

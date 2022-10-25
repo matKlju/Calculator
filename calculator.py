@@ -1,83 +1,85 @@
 import math
 
-operations = ['+', '-', '*', '/', '^2', 'sqrt']
 
-
-def check_value_type(number, operation=0):
+def check_num_value(number):
     try:
         return float(number)
-    except AttributeError:
+    except ValueError:
         return False
 
-    # # only float numbers
-    # if operation > 4:
-    #     # to stop second number after exponent or sqrt operation
-    #     return None
-    # while True:
-    #     try:
-    #         number = float(input('\nNumber:\t'))
-    #         return number
-    #     except ValueError:
-    #         print('Only float numbers')
-    #         continue
-    # pass
 
+def get_result(num1, num2, operation):
+    if operation == 1.0:
+        result = num1 + num2
+        return round(result, 2)
 
-def get_operations():
-    # while True:
-    #     for i in enumerate(operations, 1):
-    #         print(f'{i[0]}. {i[1]}')
-    #
-    #     try:
-    #         operation = abs(int(input('Choose operation: ')))
-    #         if operation > 6:
-    #             print('Choose number between 1 - 6')
-    #             continue
-    #         return operation
-    #     except ValueError:
-    #         print('Only float numbers!\n')
-    #         continue
-    pass
+    if operation == 2.0:
+        result = num1 - num2
+        return round(result, 2)
 
+    if operation == 3.0:
+        result = num1 * num2
+        return round(result, 2)
 
-def get_result(f_number, sec_number, operation):
-    if operation == 1:
-        result = f_number + sec_number
-        return result
-    if operation == 2:
-        result = f_number - sec_number
-        return result
-    if operation == 3:
-        result = f_number * sec_number
-        return result
-    if operation == 4:
-        if sec_number == 0.0:
-            print("Cannot divide by zero!")
+    if operation == 4.0:
+        if num2 == 0.0:
             return None
-        result = f_number / sec_number
-        return result
-    if operation == 5:
-        result = f_number**2
-        return result
-    if operation == 6:
-        result = round(math.sqrt(f_number))
-        return result
+        result = num1 / num2
+        return round(result, 2)
+
+    if operation == 5.0:
+        result = num1 ** 2
+        return round(result, 2)
+
+    if operation == 6.0:
+        result = round(math.sqrt(num1), 2)
+        return round(result, 2)
 
 
 def main():
     while True:
-        if check_value_type(f_number := input('\nNumber:\t')):
-            pass
-        elif check_value_type(operation := input('Choose operation: ')):
-            pass
-        elif check_value_type(sec_number := input('\nNumber:\t')):
-            pass
-        else:
-            print('Only integers and ')
+        operations = ['+', '-', '*', '/', '^2', 'sqrt']
+
+        while True:
+            num1 = input('\nNumber1:\t')
+            num1 = check_num_value(num1)
+            if not num1:
+                print('\nOnly numbers!')
+                continue
+            else:
+                break
+
+        for i in enumerate(operations, 1):
+            print(f'{i[0]}. {i[1]}')
+
+        while True:
+            operation = input('\nOperation:\t')
+            operation = check_num_value(operation)
+            if not operation:
+                print('\nOnly numbers!')
+                continue
+            else:
+                break
+
+        if operation in [5.0, 6.0]:
+            result = get_result(num1, None, operation)
+            print(f'\nResult:\t{round(result, 2)}')
             continue
 
-        result = get_result(f_number, sec_number, operation)
-        print(f'Result: {round(result, 2)}')
+        while True:
+            num2 = input('\nNumber2:\t')
+            num2 = check_num_value(num2)
+            if num2 == 0.0:
+                print('Cannot divide by zero!')
+                continue
+            if not num2:
+                print('\nOnly numbers!')
+                continue
+            else:
+                break
+
+        result = get_result(num1, num2, operation)
+        print(f'\nResult:\t{result}')
 
 
 if __name__ == "__main__":
