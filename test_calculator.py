@@ -44,6 +44,13 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(get_result(5.0, 0.0, 4), None)
         self.assertEqual(get_result(10, 0.0, 4), None)
         self.assertEqual(get_result(-2, 0.0, 4), None)
+        
+    def test_check_num_value(self):
+        self.assertEqual(check_num_value(1), 1.0)
+        self.assertEqual(check_num_value(2.0), 2.0)
+        self.assertEqual(check_num_value('q'), None)
+#        self.assertEqual(check_num_value
+#        self.assertEqual(check_num_value
 
 
 if __name__ == "__main__":

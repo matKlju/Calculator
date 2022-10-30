@@ -5,7 +5,7 @@ def check_num_value(number):
     try:
         return float(number)
     except ValueError:
-        return False
+        return None
 
 
 def get_result(num1, num2, operation):
