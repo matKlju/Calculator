@@ -11,29 +11,29 @@ def check_num_value(number):
 def get_result(num1, num2, operation):
     if operation == 1.0:
         result = num1 + num2
-        return round(result, 2)
+        return round(result, 4)
 
     if operation == 2.0:
         result = num1 - num2
-        return round(result, 2)
+        return round(result, 4)
 
     if operation == 3.0:
         result = num1 * num2
-        return round(result, 2)
+        return round(result, 4)
 
     if operation == 4.0:
         if num2 == 0.0:
             return None
         result = num1 / num2
-        return round(result, 2)
+        return round(result, 4)
 
     if operation == 5.0:
         result = num1 ** 2
-        return round(result, 2)
+        return round(result, 4)
 
     if operation == 6.0:
-        result = round(math.sqrt(num1), 2)
-        return round(result, 2)
+        result = round(math.sqrt(num1), 4)
+        return round(result, 4)
 
 
 def main():
@@ -63,7 +63,7 @@ def main():
 
         if operation in [5.0, 6.0]:
             result = get_result(num1, None, operation)
-            print(f'\nResult:\t{round(result, 2)}')
+            print(f'\nResult:\t{round(result, 4)}')
             continue
 
         while True:
@@ -80,6 +80,7 @@ def main():
 
         result = get_result(num1, num2, operation)
         print(f'\nResult:\t{result}')
+
 
 
 if __name__ == "__main__":
