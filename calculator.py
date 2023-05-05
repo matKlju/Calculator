@@ -1,87 +1,87 @@
-import math
+"""
+Calculator program with basic operations:
+    Addition (+)
+    Subtraction (-)
+    Multiplication (*)
+    Division (/)
+    Exponentiation (**)
 
+To add:
+    Square root (√)
+    Modulo (%)
+    Logarithm (log)
+    Trigonometric functions (sin, cos, tan)
 
-def check_num_value(number):
-    try:
-        return float(number)
-    except ValueError:
-        return None
+"""
+import sys
+import logging
+# pylint: disable=logging-fstring-interpolation
 
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)s\n\t%(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S',
+                    handlers=[logging.StreamHandler()])
 
-def get_result(num1, num2, operation):
-    if operation == 1.0:
-        result = num1 + num2
-        return round(result, 4)
+def calculation(num1, operand, num2):
+    """Calculate result of expression"""
+    if operand == '/' and num2 == 0:
+        logging.error('Cannot divide by zero!')
 
-    if operation == 2.0:
-        result = num1 - num2
-        return round(result, 4)
+    if operand == '+':
+        return round(num1 + num2, 6)
 
-    if operation == 3.0:
-        result = num1 * num2
-        return round(result, 4)
+    if operand == '-':
+        return round(num1 - num2, 6)
 
-    if operation == 4.0:
-        if num2 == 0.0:
+    if operand in ('*', 'x', 'X'):
+        return round(num1 * num2, 6)
+
+    if operand == '/':
+        return round(num1 / num2, 6)
+
+    if operand in ('**', '^'):
+        return round(num1 ** num2, 6)
+
+    return 0
+
+def operator_validation():
+    """Validate supported operator"""
+    operators = ('+', '-', '*', 'x', '/', '^', '**')
+    while True:
+        operator = input("Operation (q to quit): ")
+        if operator not in operators:
+            logging.warning(f'{operator} not supported!')
+            continue
+        if operator in ('q', 'quit'):
             return None
-        result = num1 / num2
-        return round(result, 4)
 
-    if operation == 5.0:
-        result = num1 ** 2
-        return round(result, 4)
+        return operator
 
-    if operation == 6.0:
-        result = round(math.sqrt(num1), 4)
-        return round(result, 4)
+def input_float_validation():
+    """User input validation"""
+    max_float = sys.float_info.max
+    while True:
+        try:
+            number = input('Number (q to quit): ')
+            if number.lower() in ('q', 'quit'):
+                return None
+            number = float(number)
+            if abs(number) > max_float:
+                logging.warning("Value outside reasonable range.")
+                continue
+            return number
 
+        except (ValueError, TypeError):
+            logging.warning("Only float numbers")
 
 def main():
+    """main function"""
     while True:
-        operations = ['+', '-', '*', '/', '^2', 'sqrt']
-
-        while True:
-            num1 = input('\nNumber1:\t')
-            num1 = check_num_value(num1)
-            if not num1:
-                print('\nOnly numbers!')
-                continue
-            else:
-                break
-
-        for i in enumerate(operations, 1):
-            print(f'{i[0]}. {i[1]}')
-
-        while True:
-            operation = input('\nOperation:\t')
-            operation = check_num_value(operation)
-            if not operation:
-                print('\nOnly numbers!')
-                continue
-            else:
-                break
-
-        if operation in [5.0, 6.0]:
-            result = get_result(num1, None, operation)
-            print(f'\nResult:\t{round(result, 4)}')
-            continue
-
-        while True:
-            num2 = input('\nNumber2:\t')
-            num2 = check_num_value(num2)
-            if num2 == 0.0:
-                print('Cannot divide by zero!')
-                continue
-            if not num2:
-                print('\nOnly numbers!')
-                continue
-            else:
-                break
-
-        result = get_result(num1, num2, operation)
-        print(f'\nResult:\t{result}')
-
-
+        first_number = input_float_validation()
+        operation = operator_validation()
+        second_number = input_float_validation()
+        result = calculation(first_number, operation, second_number)
+        logging.info(result)
 
 if __name__ == "__main__":
     main()
